@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 21:07:32 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/09 16:53:43 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/06/10 22:10:51 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	t_sphere	s;
-	t_sphere	s2;
-	t_ray		r;
+	t_sphere	s[3];
+	t_ray		cam;
 	int			i;
 	int			j;
+	int			k;
 	void		*mlx;
 	void		*win;
 	t_img		*img;
@@ -57,34 +57,42 @@ int		main(int ac, char **av)
 	if (!(win = mlx_new_window(mlx, WIN_WID, WIN_LEN, "RTv1 - 42")))
 		return (-1);
 	img = init_img(mlx);
-	s.o.x = 500;
-	s.o.y = 400;
-	s.o.z = 5;
-	s.r = 100;
-	s.color = 0xff;
+	s[0].o.x = 500;
+	s[0].o.y = 400;
+	s[0].o.z = 5;
+	s[0].r = 100;
+	s[0].color = 0xff;
 
-	s2.o.x = 600;
-	s2.o.y = 400;
-	s2.o.z = 5000;
-	s2.r = 100;
-	s2.color = 0xff00;
+	s[1].o.x = 600;
+	s[1].o.y = 400;
+	s[1].o.z = 10;
+	s[1].r = 50;
+	s[1].color = 0xff00;
 
-	r.d.x = 0;
-	r.d.y = 0;
-	r.d.z = 1;
-	r.o.z = 0;
+	s[2].o.x = 400;
+	s[2].o.y = 400;
+	s[2].o.z = 10;
+	s[2].r = 150;
+	s[2].color = 0xff0000;
+
 	i = 0;
 	while (i < WIN_LEN)
 	{
-		r.o.y = i;
 		j = 0;
 		while (j < WIN_WID)
 		{
-			r.o.x = j;
-			if (sphere_intersect(r, s2))
-				img_pixel_put(img, j, i, s2.color);
-			if (sphere_intersect(r, s))
-				img_pixel_put(img, j, i, s.color);
+			cam.d.x = 0;
+			cam.d.y = 0;
+			cam.d.z = 1;
+			cam.o.y = i;
+			cam.o.x = j;
+			cam.o.z = 0;
+			cam.inter = 0;
+			k = 0;
+			while (k < 3)
+				sphere_intersect(&cam, s[k++]);
+			if (cam.inter != 0)
+				img_pixel_put(img, j, i, cam.draw_color);
 			j++;
 		}
 		i++;

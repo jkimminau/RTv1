@@ -6,7 +6,7 @@
 #    By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 21:12:24 by jkimmina          #+#    #+#              #
-#    Updated: 2018/06/09 16:13:35 by jkimmina         ###   ########.fr        #
+#    Updated: 2018/06/10 20:25:29 by jkimmina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = RTv1
 
 SRC =	main.c		\
 		math.c		\
+		vec_math.c	\
 		draw.c
 
 OBJ = $(SRC:.c=.o)
