@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:07:24 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/10 21:06:09 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:32:24 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ typedef struct	s_sphere
 typedef struct	s_light
 {
 	t_vector	o;
-	int			brightness;
+	double		red;
+	double		green;
+	double		blue;
 }				t_light;
 
 typedef struct	s_img

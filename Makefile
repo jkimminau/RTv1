@@ -6,15 +6,16 @@
 #    By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 21:12:24 by jkimmina          #+#    #+#              #
-#    Updated: 2018/06/10 20:25:29 by jkimmina         ###   ########.fr        #
+#    Updated: 2018/06/13 18:44:37 by jkimmina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
 SRC =	main.c		\
-		math.c		\
+		obj_math.c		\
 		vec_math.c	\
+		ray.c		\
 		draw.c
 
 OBJ = $(SRC:.c=.o)
