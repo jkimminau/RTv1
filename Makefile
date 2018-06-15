@@ -6,14 +6,15 @@
 #    By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 21:12:24 by jkimmina          #+#    #+#              #
-#    Updated: 2018/06/13 18:44:37 by jkimmina         ###   ########.fr        #
+#    Updated: 2018/06/14 19:26:04 by jkimmina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
 SRC =	main.c		\
-		obj_math.c		\
+		init.c		\
+		obj_math.c	\
 		vec_math.c	\
 		ray.c		\
 		draw.c
@@ -21,7 +22,12 @@ SRC =	main.c		\
 OBJ = $(SRC:.c=.o)
 
 HEADER = rtv1.h		\
-		 structs.h
+		 structs.h	\
+		 init.h		\
+		 obj_math.h	\
+		 vec_math.h	\
+		 ray.h		\
+		 draw.h
 
 HEADERDIR = ./inc	\
 
@@ -39,6 +45,9 @@ all: $(NAME)
 
 libft: $(LIBFT)
 
+$(OBJ): 
+	gcc $(FLAGS) -c $(addprefix src/, $(SRC)) -I$(HEADERDIR) 
+
 $(LIBFT):
 	make -C ./libft
 
@@ -47,9 +56,8 @@ libmlx: $(LIBMLX)
 $(LIBMLX): 
 	make -C ./minilibx/
 
-$(NAME): $(LIBMLX) 
+$(NAME): $(LIBMLX) $(OBJ)
 	#$(LIBFT)
-	gcc $(FLAGS) -c $(addprefix src/, $(SRC)) -I$(HEADERDIR) 
 	gcc $(OBJ) -o $(NAME) $(LIBMLXLINK)
 	#$(LIBFTLINK)
 

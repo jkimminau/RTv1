@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_math.h                                         :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/10 20:26:28 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 18:23:49 by jkimmina         ###   ########.fr       */
+/*   Created: 2018/06/14 18:09:09 by jkimmina          #+#    #+#             */
+/*   Updated: 2018/06/14 18:59:42 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC_MATH_H
-# define VEC_MATH_H
+#ifndef RAY_H
+# define RAY_H
 
-#include <structs.h>
+#include <math.h>
+#include <vec_math.h>
+#include <obj_math.h>
 
-double		dot_product(t_vector v1, t_vector v2);
-t_vector	vector_subtract(t_vector v1, t_vector v2);
-t_vector	vector_add(t_vector v1, t_vector v2);
-t_vector	vector_scale(double scale, t_vector v);
+int		calculate_color(t_rt *rt, t_ray *bounce_ray, double reflection);
+int		calculate_ray(t_rt *rt, t_ray ray);
 
 #endif

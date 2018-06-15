@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_math.h                                         :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/10 20:26:28 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 18:23:49 by jkimmina         ###   ########.fr       */
+/*   Created: 2018/06/14 17:58:42 by jkimmina          #+#    #+#             */
+/*   Updated: 2018/06/14 18:06:58 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC_MATH_H
-# define VEC_MATH_H
+#ifndef	INIT_H
+# define INIT_H
 
-#include <structs.h>
+#include <rtv1.h>
 
-double		dot_product(t_vector v1, t_vector v2);
-t_vector	vector_subtract(t_vector v1, t_vector v2);
-t_vector	vector_add(t_vector v1, t_vector v2);
-t_vector	vector_scale(double scale, t_vector v);
+t_img	*init_img(void *mlx);
+t_rt	*init_rt(void);
 
 #endif

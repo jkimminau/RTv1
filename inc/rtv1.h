@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 21:11:30 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/10 19:48:26 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/06/14 21:14:53 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@
 //# include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 # include <structs.h>
-
-void		img_pixel_put(t_img *img, int x, int y, int color);
-double		dot_product(t_vector v1, t_vector v2);
-t_vector	vector_subtract(t_vector v1, t_vector v2);
-int			sphere_intersect(t_ray *r, t_sphere s);
+# include <draw.h>
+# include <init.h>
 
 #endif

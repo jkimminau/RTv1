@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_math.h                                         :+:      :+:    :+:   */
+/*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/10 20:26:28 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 18:23:49 by jkimmina         ###   ########.fr       */
+/*   Created: 2018/06/14 18:11:22 by jkimmina          #+#    #+#             */
+/*   Updated: 2018/06/14 19:00:03 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC_MATH_H
-# define VEC_MATH_H
+#ifndef DRAW_H
+# define DRAW_H
 
-#include <structs.h>
+# include <ray.h>
+# include <rtv1.h>
 
-double		dot_product(t_vector v1, t_vector v2);
-t_vector	vector_subtract(t_vector v1, t_vector v2);
-t_vector	vector_add(t_vector v1, t_vector v2);
-t_vector	vector_scale(double scale, t_vector v);
+void	img_pixel_put(t_img *img, int x, int y, int color);
+void	render(t_rt *rt);
 
 #endif
