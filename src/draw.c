@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:56:10 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 21:20:02 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/06/16 18:23:16 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ void	render(t_rt *rt)
 {
 	int		x;
 	int		y;
+	int		res;
+	t_color	*color;
 	t_ray	ray;
 
 	ray.d.x = 0;
 	ray.d.y = 0;
 	ray.d.z = 1;
-	ray.o.z = 0;
+	ray.o.z = -2000;
 	y = 0;
 	while (y < WIN_LEN)
 	{
@@ -36,10 +38,17 @@ void	render(t_rt *rt)
 		while (x < WIN_WID)
 		{
 			ray.o.x = x;
-			img_pixel_put(rt->img, x, y, calculate_ray(rt, ray));
+			color = calculate_ray(rt, &ray);
+			if (color == 0)
+				res = 0;
+			else
+			{
+				printf("red: %d green: %d blue: %d\n", color->red, color->green, color->blue);
+				res = color->blue + (color->green << 8) + (color->red << 16);
+			}
+			img_pixel_put(rt->img, x, y, res);
 			x++;
 		}
-		//printf("y = %d\n", y);
 		y++;
 	}
 	mlx_put_image_to_window(rt->mlx, rt->win, rt->img->ptr, 0, 0);

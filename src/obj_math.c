@@ -6,11 +6,12 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 18:48:34 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 21:17:24 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/06/16 18:28:23 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <obj_math.h>
+#include <stdio.h>
 
 int			sphere_intersect(t_ray *r, t_sphere *s)
 {
@@ -34,11 +35,11 @@ int			sphere_intersect(t_ray *r, t_sphere *s)
 	inter1 = (-b - disc) / 2;
 	if (inter0 > inter1)
 		inter0 = inter1;
-	if (r->inter == 0.0 || (inter0 > 0.001 && inter0 < r->inter))
+	printf("ray: (%f, %f, %f)\t%f\n", r->o.x, r->o.y, inter0, r->inter);
+	if (inter0 > 0.001 && (r->inter == 0.0 || inter0 < r->inter))
 	{
 		r->inter = inter0;
 		r->obj = s;
-		r->draw_color = s->color;
 		return (1);
 	}
 	return (0);

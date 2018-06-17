@@ -6,12 +6,25 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:07:24 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 21:13:24 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/06/16 17:44:58 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef struct	s_color
+{
+	int			red;
+	int			green;
+	int			blue;
+}				t_color;
+
+typedef struct	s_material
+{
+	t_color		color;
+	double		reflection;
+}				t_material;
 
 typedef struct	s_vector
 {
@@ -24,7 +37,7 @@ typedef struct	s_sphere
 {
 	t_vector	o;
 	double		r;
-	int			color;
+	t_material	*mat;
 }				t_sphere;
 
 typedef struct	s_ray
@@ -33,7 +46,6 @@ typedef struct	s_ray
 	t_vector	d;
 	double		inter;
 	t_sphere	*obj;
-	int			draw_color;
 }				t_ray;
 
 typedef struct	s_light

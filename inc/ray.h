@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 18:09:09 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 18:59:42 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/06/16 18:10:22 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <vec_math.h>
 #include <obj_math.h>
 
-int		calculate_color(t_rt *rt, t_ray *bounce_ray, double reflection);
-int		calculate_ray(t_rt *rt, t_ray ray);
+t_color	calculate_color(t_rt *rt, t_ray *bounce_ray, double reflection);
+t_color	*calculate_ray(t_rt *rt, t_ray *ray);
 
 #endif
