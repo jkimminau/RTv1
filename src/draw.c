@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:56:10 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/16 20:12:32 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/15 17:34:46 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	render(t_rt *rt)
 	int		x;
 	int		y;
 	int		res;
-	t_color	*color;
+	t_color	color;
 	t_ray	ray;
 
 	y = 0;
@@ -39,13 +39,9 @@ void	render(t_rt *rt)
 			ray.o.y = y;
 			ray.o.z = -2000;
 			color = calculate_ray(rt, &ray);
-			if (color == 0)
-				res = 0;
-			else
-			{
-				//printf("red: %d green: %d blue: %d\n", color->red, color->green, color->blue);
-				res = color->blue + (color->green << 8) + (color->red << 16);
-			}
+			
+			//printf("red: %d green: %d blue: %d at (%d, %d)\n", color.red, color.green, color.blue, y, x);
+			res = color.blue + (color.green << 8) + (color.red << 16);
 			img_pixel_put(rt->img, x, y, res);
 			x++;
 		}

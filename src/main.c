@@ -6,11 +6,12 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 21:07:32 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/16 21:57:08 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/15 17:09:41 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <draw.h>
+#include "../minilibx/mlx.h"
 
 /*int		get_option(int ac, char **av)
 {
@@ -25,29 +26,40 @@
 	return (-1);
 }*/
 
+int		handle_keys(int key, t_rt *rt)
+{
+	if (key == 53)
+	{
+		rt_free(rt);
+		exit(0);
+	}
+	return (0);
+}
+
 int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
 	t_rt		*rt;
-	t_material	mat1;
-	t_material	mat2;
-	t_material	mat3;
 
 	if ((rt = init_rt()) == 0)
 		return (-1);
-	mat1.color.red = 0;
-	mat1.color.green = 0;
-	mat1.color.blue = 255;
-	mat1.reflection = 0.2;
-	mat2.color.red = 0;
-	mat2.color.green = 255;
-	mat2.color.blue = 0;
-	mat2.reflection = 0.7;
-	mat3.color.red = 255;
-	mat3.color.green = 0;
-	mat3.color.blue = 0;
-	mat3.reflection = 0.9;
+
+	rt->material_list = (t_material *)malloc(sizeof(t_material) * 3);
+	rt->material_list[0].color.red = 0;
+	rt->material_list[0].color.green = 0;
+	rt->material_list[0].color.blue = 255;
+	rt->material_list[0].reflection = 0.2;
+
+	rt->material_list[1].color.red = 0;
+	rt->material_list[1].color.green = 255;
+	rt->material_list[1].color.blue = 0;
+	rt->material_list[1].reflection = 0.7;
+
+	rt->material_list[2].color.red = 255;
+	rt->material_list[2].color.green = 0;
+	rt->material_list[2].color.blue = 0;
+	rt->material_list[2].reflection = 0.9;
 
 	rt->sphere_list = (t_sphere **)malloc(sizeof(t_sphere *) * 4);
 	rt->sphere_list[0] = (t_sphere *)malloc(sizeof(t_sphere));
@@ -55,25 +67,26 @@ int		main(int ac, char **av)
 	rt->sphere_list[0]->o.y = 400;
 	rt->sphere_list[0]->o.z = 50;
 	rt->sphere_list[0]->r = 70;
-	rt->sphere_list[0]->mat = &mat1;
+	rt->sphere_list[0]->m = &rt->material_list[0];
 
 	rt->sphere_list[1] = (t_sphere *)malloc(sizeof(t_sphere));
 	rt->sphere_list[1]->o.x = 700;
 	rt->sphere_list[1]->o.y = 400;
 	rt->sphere_list[1]->o.z = 50;
 	rt->sphere_list[1]->r = 70;
-	rt->sphere_list[1]->mat = &mat2;
+	rt->sphere_list[1]->m = &rt->material_list[1];
 
 	rt->sphere_list[2] = (t_sphere *)malloc(sizeof(t_sphere));
 	rt->sphere_list[2]->o.x = 500;
 	rt->sphere_list[2]->o.y = 400;
 	rt->sphere_list[2]->o.z = 50;
 	rt->sphere_list[2]->r = 70;
-	rt->sphere_list[2]->mat = &mat3;
+	rt->sphere_list[2]->m = &rt->material_list[2];
 
 	rt->sphere_list[3] = 0;
 	render(rt);
 
+	mlx_key_hook(rt->win, handle_keys, rt);
 	mlx_loop(rt->mlx);
 	return (0);
 }

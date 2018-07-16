@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:07:24 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/16 20:49:48 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/15 17:53:28 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ typedef struct	s_vector
 typedef struct	s_sphere
 {
 	t_vector	o;
-	double		r;
-	t_material	*mat;
+	float		r;
+	t_material	*m;
 }				t_sphere;
 
 typedef struct	s_ray
 {
 	t_vector	o;
 	t_vector	d;
-	double		inter;
-	t_color		*color;
+	double		intersect;
+	t_color		color;
 	t_sphere	*obj;
 }				t_ray;
 
@@ -70,8 +70,9 @@ typedef	struct	s_rt
 {
 	void		*mlx;
 	void		*win;
-	t_sphere	**sphere_list;
 	t_img		*img;
+	t_material	*material_list;
+	t_sphere	**sphere_list;
 }				t_rt;
 
 #endif

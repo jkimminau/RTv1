@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 17:58:42 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 18:06:58 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/15 14:00:15 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <rtv1.h>
 
+t_rt	*rt_free(t_rt *rt);
 t_img	*init_img(void *mlx);
 t_rt	*init_rt(void);
 

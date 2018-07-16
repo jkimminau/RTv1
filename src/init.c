@@ -6,11 +6,22 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 17:51:48 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/06/14 18:08:27 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/15 14:00:06 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <init.h>
+
+
+t_rt		*rt_free(t_rt *rt)
+{
+	if (rt->win != 0)
+		mlx_destroy_window(rt->mlx, rt->win);
+	if (rt->mlx != 0)
+		mlx_del(rt->mlx);
+	free(rt);
+	return (0);
+}
 
 t_img	*init_img(void *mlx)
 {
