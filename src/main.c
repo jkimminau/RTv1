@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 21:07:32 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/15 17:09:41 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/20 15:57:05 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ int		main(int ac, char **av)
 	rt->material_list[0].color.red = 0;
 	rt->material_list[0].color.green = 0;
 	rt->material_list[0].color.blue = 255;
-	rt->material_list[0].reflection = 0.2;
+	rt->material_list[0].reflection = 0.4;
 
 	rt->material_list[1].color.red = 0;
 	rt->material_list[1].color.green = 255;
 	rt->material_list[1].color.blue = 0;
-	rt->material_list[1].reflection = 0.7;
+	rt->material_list[1].reflection = 0.4;
 
 	rt->material_list[2].color.red = 255;
 	rt->material_list[2].color.green = 0;
 	rt->material_list[2].color.blue = 0;
-	rt->material_list[2].reflection = 0.9;
+	rt->material_list[2].reflection = 0.4;
 
 	rt->sphere_list = (t_sphere **)malloc(sizeof(t_sphere *) * 4);
 	rt->sphere_list[0] = (t_sphere *)malloc(sizeof(t_sphere));
@@ -96,8 +96,8 @@ int		main(int ac, char **av)
 	rt->light_list = (t_light **)malloc(sizeof(t_light *) * 1);
 	rt->light_list[0] = (t_light *)malloc(sizeof(t_light));
 	rt->light_list[0]->o.x = 500;
-	rt->light_list[0]->o.y = 400;
-	rt->light_list[0]->o.z = -50;
+	rt->light_list[0]->o.y = 0;
+	rt->light_list[0]->o.z = -500;
 	rt->light_list[0]->blue = 1.0;
 	rt->light_list[0]->green = 1.0;
 	rt->light_list[0]->red = 1.0;

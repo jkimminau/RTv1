@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:21:58 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/15 17:57:43 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/20 15:55:55 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void		calculate_color(t_rt *rt, t_ray *normal, double reflection, t_ray *ray)
 			
 			l_ratio = dot_product(lightray.d, normal->d) * reflection;
 			
-			ray->color.blue += l_ratio * rt->light_list[i]->blue * normal->obj->m->color.blue;
-			ray->color.green += l_ratio * rt->light_list[i]->green * normal->obj->m->color.green;
-			ray->color.red += l_ratio * rt->light_list[i]->red * normal->obj->m->color.red;
+			ray->color.blue += l_ratio * rt->light_list[i]->blue * normal->m->color.blue;
+			ray->color.green += l_ratio * rt->light_list[i]->green * normal->m->color.green;
+			ray->color.red += l_ratio * rt->light_list[i]->red * normal->m->color.red;
 
 		}
 		i++;
@@ -59,13 +59,23 @@ t_color		calculate_ray(t_rt *rt, t_ray *ray)
 	float			reflection;
 	float			vec_product;
 	t_ray			normal;
+	t_plane		plane;
 
+	plane.o.x = 500;
+	plane.o.y = 450;
+	plane.o.z = 200;
+	plane.n.x = 0;
+	plane.n.y = 3;
+	plane.n.z = 1;
+	plane.m = rt->sphere_list[0]->m;
 	(void)vec_product;
 	(void)normal;
 	ray->color.blue = 0;
 	ray->color.green = 0;
 	ray->color.red = 0;
+
 	
+
 	level = 0;
 	reflection = 1.0;
 	while (level < 15 && reflection > 0)
@@ -74,19 +84,21 @@ t_color		calculate_ray(t_rt *rt, t_ray *ray)
 		i = 0;
 		while (rt->sphere_list[i] != 0)
 			sphere_intersect(ray, rt->sphere_list[i++]);
+		plane_intersect(ray, plane);
 		if (ray->intersect == 0.0)
 			return (ray->color);
-		normal.obj = ray->obj;
+		normal.obj_o = ray->obj_o;
+		normal.m = ray->m;
 
 		normal.o = vector_add(ray->o, vector_scale(ray->intersect, ray->d));
-		normal.d = vector_subtract(normal.o, normal.obj->o);
+		normal.d = vector_subtract(normal.o, normal.obj_o);
 		if ((vec_product = dot_product(normal.d, normal.d)) == 0)
 			return (ray->color);
 		normal.d = vector_scale(1.0 / sqrtf(vec_product), normal.d);
 
 		calculate_color(rt, &normal, reflection, ray);
 
-		reflection *= ray->obj->m->reflection;
+		reflection *= ray->m->reflection;
 		ray->o = normal.o;
 
 		ray->d = vector_subtract(ray->d, vector_scale(2.0 * dot_product(ray->d, normal.d), normal.d));
