@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include <draw.h>
+#include <stdio.h>
+#include <pthread.h>
 
 void img_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -18,15 +20,17 @@ void img_pixel_put(t_img *img, int x, int y, int color)
 		*(int *)(img->data_addr + ((x + y * WIN_WID) * img->bpp)) = color;	
 }
 
-void	render(t_rt *rt)
+void	*draw_thread(void *thread)
 {
 	int		x;
 	int		y;
 	int		res;
+	t_rt		*rt;
 	t_color	color;
 	t_ray	ray;
 
-	y = 0;
+	rt = (t_rt *)((t_thread *)thread)->rt;
+	y = ((t_thread *)thread)->i;
 	while (y < WIN_LEN)
 	{
 		x = 0;
@@ -40,12 +44,33 @@ void	render(t_rt *rt)
 			ray.o.z = -2000;
 			color = calculate_ray(rt, &ray);
 			
-			//printf("red: %d green: %d blue: %d at (%d, %d)\n", color.red, color.green, color.blue, y, x);
+			color.blue = (color.blue > 255) ? 255 : color.blue;
+			color.green = (color.green > 255) ? 255 : color.green;
+			color.red = (color.red > 255) ? 255 : color.red;
 			res = color.blue + (color.green << 8) + (color.red << 16);
 			img_pixel_put(rt->img, x, y, res);
 			x++;
 		}
-		y++;
+		y += THREADS;
 	}
+	return (NULL);	
+}
+
+void	render(t_rt *rt)
+{
+	t_thread	list[THREADS];
+	int		i;
+
+	i = 0;
+	while (i < THREADS)
+	{
+		list[i].i = i;
+		list[i].rt = rt;
+		pthread_create(&(list[i]).tid, NULL, draw_thread, &list[i]);
+		i++;
+	}
+	i = 0;
+	while (i < THREADS)
+		pthread_join(list[i++].tid, NULL);
 	mlx_put_image_to_window(rt->mlx, rt->win, rt->img->ptr, 0, 0);
 }

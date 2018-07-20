@@ -45,7 +45,7 @@ all: $(NAME)
 
 libft: $(LIBFT)
 
-$(OBJ): 
+$(OBJ): src/*.c
 	gcc $(FLAGS) -c $(addprefix src/, $(SRC)) -I$(HEADERDIR) 
 
 $(LIBFT):
@@ -57,9 +57,9 @@ $(LIBMLX):
 	make -C ./minilibx/
 
 $(NAME): $(LIBMLX) $(OBJ)
-	#$(LIBFT)
+	@#$(LIBFT)
 	gcc $(OBJ) -o $(NAME) $(LIBMLXLINK)
-	#$(LIBFTLINK)
+	@#$(LIBFTLINK)
 
 clean:
 	/bin/rm -f $(OBJ) $(HEADER:.h=.h.gch)

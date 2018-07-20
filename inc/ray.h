@@ -17,7 +17,7 @@
 #include <vec_math.h>
 #include <obj_math.h>
 
-t_color	calculate_color(t_rt *rt, t_ray *bounce_ray, double reflection, t_ray *ray);
+void	calculate_color(t_rt *rt, t_ray *bounce_ray, double reflection, t_ray *ray);
 t_color	calculate_ray(t_rt *rt, t_ray *ray);
 
 #endif

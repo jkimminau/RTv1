@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <draw.h>
 #include "../minilibx/mlx.h"
 
@@ -33,6 +34,13 @@ int		handle_keys(int key, t_rt *rt)
 		rt_free(rt);
 		exit(0);
 	}
+	if (key == 123 || key == 124)
+		rt->light_list[0]->o.x += (key > 123) ? 10 : -10;
+	if (key == 1 || key == 13)
+		rt->light_list[0]->o.z += (key > 1) ? 10 : -10;
+	if (key == 125 || key == 126)
+		rt->light_list[0]->o.y += (key > 125) ? -10 : 10;
+	render(rt);
 	return (0);
 }
 
@@ -82,11 +90,22 @@ int		main(int ac, char **av)
 	rt->sphere_list[2]->o.z = 50;
 	rt->sphere_list[2]->r = 70;
 	rt->sphere_list[2]->m = &rt->material_list[2];
-
+	
 	rt->sphere_list[3] = 0;
+	
+	rt->light_list = (t_light **)malloc(sizeof(t_light *) * 1);
+	rt->light_list[0] = (t_light *)malloc(sizeof(t_light));
+	rt->light_list[0]->o.x = 500;
+	rt->light_list[0]->o.y = 400;
+	rt->light_list[0]->o.z = -50;
+	rt->light_list[0]->blue = 1.0;
+	rt->light_list[0]->green = 1.0;
+	rt->light_list[0]->red = 1.0;
+
 	render(rt);
 
-	mlx_key_hook(rt->win, handle_keys, rt);
+	//mlx_key_hook(rt->win, handle_keys, rt);
+	mlx_hook(rt->win, 2, 0, handle_keys, rt);
 	mlx_loop(rt->mlx);
 	return (0);
 }

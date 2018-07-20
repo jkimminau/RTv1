@@ -13,24 +13,26 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+#include <pthread.h>
+
 typedef struct	s_color
 {
 	int			red;
 	int			green;
 	int			blue;
-}				t_color;
+}		t_color;
 
 typedef struct	s_material
 {
 	t_color		color;
-	double		reflection;
-}				t_material;
+	float		reflection;
+}		t_material;
 
 typedef struct	s_vector
 {
-	double		x;
-	double		y;
-	double		z;
+	float		x;
+	float		y;
+	float		z;
 }				t_vector;
 
 typedef struct	s_sphere
@@ -44,17 +46,17 @@ typedef struct	s_ray
 {
 	t_vector	o;
 	t_vector	d;
-	double		intersect;
 	t_color		color;
+	float		intersect;
 	t_sphere	*obj;
 }				t_ray;
 
 typedef struct	s_light
 {
 	t_vector	o;
-	double		red;
-	double		green;
-	double		blue;
+	float		red;
+	float		green;
+	float		blue;
 }				t_light;
 
 typedef struct	s_img
@@ -73,6 +75,13 @@ typedef	struct	s_rt
 	t_img		*img;
 	t_material	*material_list;
 	t_sphere	**sphere_list;
+	t_light		**light_list;
 }				t_rt;
 
+typedef struct	s_thread
+{
+	pthread_t		tid;
+	int			i;
+	t_rt			*rt;
+}				t_thread;
 #endif

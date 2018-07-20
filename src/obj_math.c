@@ -37,11 +37,16 @@ int			sphere_intersect(t_ray *r, t_sphere *s)
 	inter1 = (-b - disc) / 2;
 	if (inter0 > inter1)
 		inter0 = inter1;
-	if (inter0 > 0.001 && (r->intersect == 0.0 || inter0 < r->intersect))
+	if (inter0 > 0.00001 && (r->intersect == 0.0 || inter0 < r->intersect))
 	{
 		r->intersect = inter0;
 		r->obj = s;
 		return (1);
 	}
 	return (0);
+}
+
+int			plane_intersect(t_ray *r)
+{
+	
 }
