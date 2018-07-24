@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 18:48:34 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/20 16:12:42 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/23 18:11:43 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int			sphere_intersect(t_ray *r, t_sphere *s)
 	double		disc;
 	t_vector	dist;
 
+
 	a = dot_product(r->d, r->d);
 	dist = vector_subtract(r->o, s->o);
 	b = 2 * dot_product(r->d, dist);
 	c = dot_product(dist, dist) - (s->r * s->r);
-	//printf("dist: %f\n", dot_product(dist, dist));
 	disc = (b * b) - (4 * a * c);
 
 	if (disc < 0)

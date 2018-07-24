@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.h                                             :+:      :+:    :+:   */
+/*   obj_make.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 21:11:30 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 15:54:12 by jkimmina         ###   ########.fr       */
+/*   Created: 2018/07/23 17:24:14 by jkimmina          #+#    #+#             */
+/*   Updated: 2018/07/23 18:04:25 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef OBJ_MAKE_H
+# define OBJ_MAKE_H
 
-# define WIN_WID	1000
-# define WIN_LEN	800
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-//# include <fcntl.h>
-//# include <pthread.h>
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
-# include <structs.h>
-# include <draw.h>
-# include <init.h>
+# include <rtv1.h>
+
+void	make_light(t_rt *rt, char *line, int i);
+void	make_sphere(t_rt *rt, char *line, int i);
+//void	make_plane(t_rt *rt, char *line, int i);
 
 #endif
