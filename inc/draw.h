@@ -13,7 +13,7 @@
 #ifndef DRAW_H
 # define DRAW_H
 
-# define THREADS 40
+# define THREADS 1
 
 # include <ray.h>
 # include <rtv1.h>

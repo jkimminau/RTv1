@@ -43,7 +43,6 @@ void	*draw_thread(void *thread)
 			ray.o.y = y;
 			ray.o.z = -2000;
 			color = calculate_ray(rt, &ray);
-			
 			color.blue = (color.blue > 255) ? 255 : color.blue;
 			color.green = (color.green > 255) ? 255 : color.green;
 			color.red = (color.red > 255) ? 255 : color.red;

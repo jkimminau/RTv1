@@ -95,4 +95,5 @@ typedef struct	s_thread
 	int			i;
 	t_rt		*rt;
 }				t_thread;
+
 #endif

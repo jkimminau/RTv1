@@ -56,13 +56,15 @@ int			plane_intersect(t_ray *r, t_plane *p)
 
 	denom = dot_product(p->n, r->d);
 	if (fabs(denom) > 0.00001)
-		inter = dot_product(vector_subtract(p->o, r->o), p->n) / denom;
-	if (inter != 0.0 && (r->intersect == 0.0 || inter < r->intersect))
 	{
-		r->intersect = inter;
-		r->obj_o = p->o;
-		r->m = p->m;
-		return (1);
+		inter = dot_product(vector_subtract(p->o, r->o), p->n) / denom;
+		if (inter >= 0 && (r->intersect == 0.0 || inter < r->intersect))
+		{
+			r->intersect = inter;
+			r->obj_o = p->o;
+			r->m = p->m;
+			return (1);
+		}
 	}
 	return (0);
 }

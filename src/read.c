@@ -12,7 +12,7 @@
 
 #include <read.h>
 
-void	get_size(t_rt *rt, char *filename)
+int	get_size(t_rt *rt, char *filename)
 {
 	int		fd;
 	char	*line;
@@ -23,17 +23,22 @@ void	get_size(t_rt *rt, char *filename)
 	fd = open(filename, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
-			if (ft_strncmp("light", line, 5) == 0)
+			if (ft_strncmp("#", line, 1) == 0)
+				;
+			else if (ft_strncmp("light", line, 5) == 0)
 				rt->light_list_size++;
-			if (ft_strncmp("sphere", line, 6) == 0)
+			else if (ft_strncmp("sphere", line, 6) == 0)
 				rt->sphere_list_size++;
-			if (ft_strncmp("plane", line, 5) == 0)
+			else if (ft_strncmp("plane", line, 5) == 0)
 				rt->plane_list_size++;
+			else
+				return (0);
 	}
 	close (fd);
 	rt->light_list = (rt->light_list_size > 0) ? malloc(sizeof(t_light *) * rt->light_list_size) : 0;
 	rt->sphere_list = (rt->sphere_list_size > 0) ? malloc(sizeof(t_sphere *) * rt->sphere_list_size) : 0;
 	rt->plane_list = (rt->plane_list_size > 0) ? malloc(sizeof(t_plane *) * rt->plane_list_size) : 0;
+	return (1);
 }
 
 void	make_objects(t_rt *rt, char *filename)
@@ -76,7 +81,8 @@ int		read_file(t_rt *rt, int ac, char **av)
 		return (0);
 	}
 	close(fd);
-	get_size(rt, av[1]);
+	if (get_size(rt, av[1]) == 0)
+		return (0);
 	make_objects(rt, av[1]);
 	return (1);
 }
