@@ -1,4 +1,5 @@
+light position ( 500 0 -500 ) color ( 10 10 10 )
 sphere position ( 300 400 50 ) radius 70 material ( 255 0 0 1 )
 sphere position ( 500 400 50 ) radius 70 material ( 0 255 0 1 )
 sphere position ( 700 400 50 ) radius 70 material ( 0 0 255 1 )
-light position ( 500 0 -500 ) color ( 10 10 10 )
+plane position ( 500 450 200 ) normal ( 0 3 1 ) material ( 255 255 255 1 )

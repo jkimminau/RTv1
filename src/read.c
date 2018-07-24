@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 15:11:20 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 18:28:51 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/23 21:22:19 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	make_objects(t_rt *rt, char *filename)
 				make_light(rt, ft_nextword(line), count[0]++); 
 			if (ft_strncmp("sphere", line, 6) == 0)
 				make_sphere(rt, ft_nextword(line), count[1]++); 
-			//if (ft_strncmp("plane", line, 5) == 0)
-			//	make_plane(rt, ft_nextword(line), count[2]++); 
+			if (ft_strncmp("plane", line, 5) == 0)
+				make_plane(rt, ft_nextword(line), count[2]++); 
 	}
 	close (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 18:48:34 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 18:11:43 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/23 21:20:43 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,35 @@ int			sphere_intersect(t_ray *r, t_sphere *s)
 	return (0);
 }
 
-int			plane_intersect(t_ray *r, t_plane p)
+int			plane_intersect(t_ray *r, t_plane *p)
 {
 	float		denom;
 	float		inter;
 
 	inter = 0.0;
 
-	denom = dot_product(p.n, r->d);
+	denom = dot_product(p->n, r->d);
 	if (fabs(denom) > 0.00001)
-		inter = dot_product(vector_subtract(p.o, r->o), p.n) / denom;
+		inter = dot_product(vector_subtract(p->o, r->o), p->n) / denom;
 	if (inter != 0.0 && (r->intersect == 0.0 || inter < r->intersect))
 	{
 		r->intersect = inter;
-		r->obj_o = p.o;
-		r->m = p.m;
+		r->obj_o = p->o;
+		r->m = p->m;
 		return (1);
 	}
 	return (0);
+}
+
+void	get_intersect(t_rt *rt, t_ray *ray)
+{
+	int		i;
+
+	ray->intersect = 0.0;
+	i = 0;
+	while (i < rt->sphere_list_size)
+		sphere_intersect(ray, rt->sphere_list[i++]);
+	i = 0;
+	while (i < rt->plane_list_size)
+		plane_intersect(ray, rt->plane_list[i++]);
 }

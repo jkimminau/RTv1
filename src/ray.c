@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:21:58 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 18:39:12 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/23 21:22:07 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void		calculate_color(t_rt *rt, t_ray *normal, double reflection, t_ray *ray)
+void		calculate_color(t_rt *rt, t_ray *normal, double r, t_ray *ray)
 {
 	t_vector	dist;
 	t_ray		lightray;
@@ -22,18 +22,6 @@ void		calculate_color(t_rt *rt, t_ray *normal, double reflection, t_ray *ray)
 	float		l_ratio;
 	int		i;
 	int		j;
-	t_plane		plane;
-
-	plane.o.x = 500;
-	plane.o.y = 450;
-	plane.o.z = 200;
-	plane.n.x = 0;
-	plane.n.y = 3;
-	plane.n.z = 1;
-	plane.m.color.blue = 255;
-	plane.m.color.green = 255;
-	plane.m.color.red = 255;
-	plane.m.reflection = 10;
 
 	i = 0;
 	while (i < rt->light_list_size)
@@ -46,14 +34,11 @@ void		calculate_color(t_rt *rt, t_ray *normal, double reflection, t_ray *ray)
 			lightray.d = vector_scale(1.0 / t, dist);
 			
 			j = 0;
-			lightray.intersect = 0.0;
-			while (j < rt->sphere_list_size)
-				sphere_intersect(&lightray, rt->sphere_list[j++]);
-			plane_intersect(ray, plane);
+			get_intersect(rt, &lightray);
 			if (lightray.intersect != 0.0)
 				return ;
 			
-			l_ratio = dot_product(lightray.d, normal->d) * reflection;
+			l_ratio = dot_product(lightray.d, normal->d) * r;
 			
 			ray->color.blue += l_ratio * rt->light_list[i]->blue * normal->m.color.blue;
 			ray->color.green += l_ratio * rt->light_list[i]->green * normal->m.color.green;
@@ -66,23 +51,11 @@ void		calculate_color(t_rt *rt, t_ray *normal, double reflection, t_ray *ray)
 
 t_color		calculate_ray(t_rt *rt, t_ray *ray)
 {
-	int			i;
 	int			level;
-	float			reflection;
-	float			vec_product;
-	t_ray			normal;
-	t_plane		plane;
-
-	plane.o.x = 500;
-	plane.o.y = 450;
-	plane.o.z = 200;
-	plane.n.x = 0;
-	plane.n.y = 3;
-	plane.n.z = 1;
-	plane.m.color.blue = 255;
-	plane.m.color.green = 255;
-	plane.m.color.red = 255;
-	plane.m.reflection = 10;
+	float		reflection;
+	float		vec_product;
+	t_ray		normal;
+	
 	ray->color.blue = 0;
 	ray->color.green = 0;
 	ray->color.red = 0;
@@ -91,11 +64,7 @@ t_color		calculate_ray(t_rt *rt, t_ray *ray)
 	reflection = 1.0;
 	while (level < 1 && reflection > 0)
 	{
-		ray->intersect = 0.0;
-		i = 0;
-		while (i < rt->sphere_list_size)
-			sphere_intersect(ray, rt->sphere_list[i++]);
-		plane_intersect(ray, plane);
+		get_intersect(rt, ray);
 		if (ray->intersect == 0.0)
 			return (ray->color);
 		normal.obj_o = ray->obj_o;

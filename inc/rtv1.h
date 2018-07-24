@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 21:11:30 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 15:54:12 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/23 21:03:36 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-//# include <fcntl.h>
-//# include <pthread.h>
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 # include <structs.h>

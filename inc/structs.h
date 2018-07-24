@@ -6,27 +6,27 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:07:24 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 18:52:37 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/23 21:06:24 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-#include <pthread.h>
+# include <pthread.h>
 
 typedef struct	s_color
 {
 	int			red;
 	int			green;
 	int			blue;
-}		t_color;
+}				t_color;
 
 typedef struct	s_material
 {
 	t_color		color;
 	float		reflection;
-}		t_material;
+}				t_material;
 
 typedef struct	s_vector
 {
@@ -61,7 +61,7 @@ typedef struct	s_ray
 
 typedef struct	s_light
 {
-	t_vectorsssssssso;
+	t_vector	o;
 	float		red;
 	float		green;
 	float		blue;
@@ -91,8 +91,8 @@ typedef	struct	s_rt
 
 typedef struct	s_thread
 {
-	pthread_t		tid;
+	pthread_t	tid;
 	int			i;
-	t_rt			*rt;
+	t_rt		*rt;
 }				t_thread;
 #endif
