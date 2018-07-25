@@ -6,14 +6,14 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 18:11:22 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 18:19:37 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/24 16:34:38 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
 
-# define THREADS 1
+# define THREADS 8
 
 # include <ray.h>
 # include <rtv1.h>

@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:07:24 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 21:06:24 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/24 14:01:12 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ typedef	struct	s_rt
 	int			plane_list_size;
 	t_light		**light_list;
 	int			light_list_size;
+	int			x_off;
+	int			y_off;
+	int			x_rot;
+	int			y_rot;
 }				t_rt;
 
 typedef struct	s_thread

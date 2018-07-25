@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:56:10 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 18:19:29 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/24 15:28:37 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	*draw_thread(void *thread)
 		x = 0;
 		while (x < WIN_WID)
 		{
-			ray.d.x = 0;
-			ray.d.y = 0;
+			ray.d.x = 0.0 + (float)rt->x_rot / 10;
+			ray.d.y = 0.0 + (float)rt->y_rot / 10;
 			ray.d.z = 1;
-			ray.o.x = x;
-			ray.o.y = y;
-			ray.o.z = -2000;
+			ray.o.x = x - (WIN_WID / 2) + rt->x_off;
+			ray.o.y = y - (WIN_LEN / 2) + rt->y_off;
+			ray.o.z = -200;
 			color = calculate_ray(rt, &ray);
 			color.blue = (color.blue > 255) ? 255 : color.blue;
 			color.green = (color.green > 255) ? 255 : color.green;

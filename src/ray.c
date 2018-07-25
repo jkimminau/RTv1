@@ -6,7 +6,7 @@
 /*   By: jkimmina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:21:58 by jkimmina          #+#    #+#             */
-/*   Updated: 2018/07/23 21:22:07 by jkimmina         ###   ########.fr       */
+/*   Updated: 2018/07/24 16:35:49 by jkimmina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,22 @@ t_color		calculate_ray(t_rt *rt, t_ray *ray)
 
 	level = 0;
 	reflection = 1.0;
-	while (level < 1 && reflection > 0)
+	while (level < 15 && reflection > 0)
 	{
 		get_intersect(rt, ray);
 		if (ray->intersect == 0.0)
 			return (ray->color);
 		normal.obj_o = ray->obj_o;
 		normal.m = ray->m;
+		//return (ray->m.color);
+		//printf("intersect: %f\t", ray->intersect);
+		
 		normal.o = vector_add(ray->o, vector_scale(ray->intersect, ray->d));
 		normal.d = vector_subtract(normal.o, normal.obj_o);
 		if ((vec_product = dot_product(normal.d, normal.d)) == 0)
 			return (ray->color);
 		normal.d = vector_scale(1.0 / sqrtf(vec_product), normal.d);
+		//printf("normal: (%f, %f, %f) (%f, %f, %f)\n", normal.o.x, normal.o.y, normal.o.z, normal.d.x, normal.d.y, normal.d.z);
 		calculate_color(rt, &normal, reflection, ray);
 		reflection *= ray->m.reflection;
 		ray->o = normal.o;
